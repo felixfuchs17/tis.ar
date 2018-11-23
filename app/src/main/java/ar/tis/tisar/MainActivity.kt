@@ -1,24 +1,23 @@
 package ar.tis.tisar
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.os.HandlerCompat.postDelayed
-import android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale
+import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.Toast
 import ar.tis.tisar.helper.CameraPermissionHelper
-import android.support.v4.os.HandlerCompat.postDelayed
-import android.view.View
 import com.google.ar.core.ArCoreApk
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         maybeEnableArButton()
+
     }
 
     override fun onResume() {
