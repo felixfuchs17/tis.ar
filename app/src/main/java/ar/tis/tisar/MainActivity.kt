@@ -2,8 +2,11 @@ package ar.tis.tisar
 
 import android.graphics.Point
 import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import ar.tis.tisar.helper.ARLocationPermissionHelper
@@ -21,6 +24,11 @@ import kotlinx.android.synthetic.main.fragment_ar.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var arFragment: ArFragment
+
+    var x1: Float = 0.0f
+    var x2: Float = 0.0f
+    var y1: Float = 0.0f
+    var y2: Float = 0.0f
 
     private var isTracking: Boolean = false
     private var isHitting: Boolean = false
@@ -46,6 +54,31 @@ class MainActivity : AppCompatActivity() {
         showFab(false)
     }
 
+    override fun onTouchEvent(touchEvent:MotionEvent):Boolean {
+        when (touchEvent.action) {
+            MotionEvent.ACTION_DOWN -> {
+                x1 = touchEvent.x
+                y1 = touchEvent.y
+            }
+            MotionEvent.ACTION_UP -> {
+                x2 = touchEvent.x
+                y2 = touchEvent.y
+                if (x1 < x2) {
+                    val i = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(i)
+                }
+                // Navigation zur Informationsseite
+                if (x1 > x2) {
+                    val i = Intent(this@MainActivity, ConstructionActivity::class.java)
+                    startActivity(i)
+                }
+            }
+        }
+        return false
+    }
+
+    override fun onResume() {
+        super.onResume()
     // Simple function to show/hide our FAB
     private fun showFab(enabled: Boolean) {
         if (enabled) {
@@ -57,6 +90,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+        // ARCore requires camera permission to operate.
+        if (!CameraPermissionHelper.hasCameraPermission(this)) {
+            CameraPermissionHelper.requestCameraPermission(this)
+            return
     // Updates the tracking state
     private fun onUpdate() {
         updateTracking()
@@ -168,5 +205,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+    fun navToLogin(v: View) {
+        Log.e("TAG", "ONCLICK")
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+    }
 
 }

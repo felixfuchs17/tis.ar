@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "651270132524",
+    "firebase_url": "https://tisar-833cd.firebaseio.com",
+    "project_id": "tisar-833cd",
+    "storage_bucket": "tisar-833cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651270132524:android:43ff8ab206c61620",
+        "android_client_info": {
+          "package_name": "ar.tis.tisar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651270132524-i5i961sk12sp06s7eifuj2ciq3mgd7qo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1bISPJV0JDDGu1gqS6X-Sg2ael4v6Y14"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
