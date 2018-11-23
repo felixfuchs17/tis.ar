@@ -8,6 +8,10 @@ import android.widget.Toast
 import ar.tis.tisar.helper.CameraPermissionHelper
 import com.google.ar.core.ArCoreApk
 import kotlinx.android.synthetic.main.activity_main.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
+
 
 
 class MainActivity : AppCompatActivity() {
