@@ -6,13 +6,6 @@
                                              android:layout_height="match_parent"
                                              tools:context=".ARFragment" android:id="@+id/frameLayout">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/hello_blank_fragment"
-            android:id="@+id/textView" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </android.support.constraint.ConstraintLayout>
