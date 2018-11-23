@@ -2,13 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/my_nav_graph"
-            app:startDestination="@id/ARFragment">
+            app:startDestination="@+id/ARFragment">
 
     <fragment android:id="@+id/ARFragment" android:name="ar.tis.tisar.ARFragment" android:label="fragment_ar"
               tools:layout="@layout/fragment_ar">
-        <action android:id="@+id/action_ARFragment_to_moreInformationFragment2"
-                app:destination="@id/moreInformationFragment2"/>
     </fragment>
-    <fragment android:id="@+id/moreInformationFragment2" android:name="ar.tis.tisar.MoreInformationFragment"
-              android:label="fragment_more_information" tools:layout="@layout/fragment_more_information"/>
 </navigation>
