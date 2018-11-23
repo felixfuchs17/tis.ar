@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TIS.AR</string>
+    <string name="construction_supervisor">Bauleiter:</string>
+    <string name="construction_begin">Baubeginn:</string>
+    <string name="construction_duration">Baudauer:</string>
+    <string name="construction_project">Baumaßnahmen:</string>
+    <string name="construction_contact">Telefon:</string>
+    <string name="construction_influence">Verkehrsbeeinflussung</string>
 </resources>
