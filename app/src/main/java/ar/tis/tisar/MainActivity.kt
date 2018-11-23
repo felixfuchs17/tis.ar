@@ -1,8 +1,10 @@
 package ar.tis.tisar
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import ar.tis.tisar.helper.CameraPermissionHelper
@@ -25,12 +27,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onResume();
+        super.onResume()
 
         // ARCore requires camera permission to operate.
         if (!CameraPermissionHelper.hasCameraPermission(this)) {
             CameraPermissionHelper.requestCameraPermission(this);
-            return;
+            return
         }
     }
 
@@ -60,6 +62,13 @@ class MainActivity : AppCompatActivity() {
             mArButton.setVisibility(View.INVISIBLE)
             mArButton.setEnabled(false)
         }
+    }
+
+    fun navToLogin(v: View) {
+        Log.e("TAG", "ONCLICK")
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 
 }
