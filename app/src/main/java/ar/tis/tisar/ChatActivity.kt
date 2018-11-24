@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_chat.*
 import java.io.Serializable
 
-class TimeLineActivity: AppCompatActivity() {
+class ChatActivity: AppCompatActivity() {
 
     // For RecyclerView
     private lateinit var adapter: ChatAdapter
