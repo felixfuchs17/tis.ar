@@ -11,10 +11,6 @@ import android.widget.Toast
 import ar.tis.tisar.helper.CameraPermissionHelper
 import com.google.ar.core.ArCoreApk
 import kotlinx.android.synthetic.main.activity_main.*
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,10 +42,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(i)
                 }
                 // Navigation zur Informationsseite
-                /*if (x1 > x2) {
-                    val i = Intent(this@MainActivity, SwipeRight::class.java)
+                if (x1 > x2) {
+                    val i = Intent(this@MainActivity, ConstructionActivity::class.java)
                     startActivity(i)
-                }*/
+                }
             }
         }
         return false
