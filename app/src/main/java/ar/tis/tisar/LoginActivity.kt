@@ -108,9 +108,9 @@ internal class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun navToTripList() {
         Toast.makeText(this, "ICH HABE MICH EINGELOGGT!", Toast.LENGTH_LONG).show()
-        /*val intent = Intent(this@LoginActivity, TripListActivity::class.java)
+        val intent = Intent(this@LoginActivity, TimeLineActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)*/
+        startActivity(intent)
     }
 
     private fun signOut() {
