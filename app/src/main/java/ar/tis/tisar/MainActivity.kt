@@ -77,8 +77,6 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-    override fun onResume() {
-        super.onResume()
     // Simple function to show/hide our FAB
     private fun showFab(enabled: Boolean) {
         if (enabled) {
@@ -90,10 +88,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-        // ARCore requires camera permission to operate.
-        if (!CameraPermissionHelper.hasCameraPermission(this)) {
-            CameraPermissionHelper.requestCameraPermission(this)
-            return
+
     // Updates the tracking state
     private fun onUpdate() {
         updateTracking()
@@ -201,10 +196,6 @@ class MainActivity : AppCompatActivity() {
         fragment.arSceneView.scene.addChild(anchorNode)
         transformableNode.select()
     }
-
-
-
-
 
     fun navToLogin(v: View) {
         Log.e("TAG", "ONCLICK")
