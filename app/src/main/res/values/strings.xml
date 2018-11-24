@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">TIS.AR</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="construction_supervisor">Bauleiter:</string>
     <string name="construction_begin">Baubeginn:</string>
     <string name="construction_duration">Baudauer:</string>
