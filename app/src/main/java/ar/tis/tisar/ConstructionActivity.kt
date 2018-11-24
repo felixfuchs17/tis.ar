@@ -13,6 +13,7 @@ class ConstructionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_construction_site)
+        changeVisibility()
     }
 
     var testData: BooleanArray = booleanArrayOf(true, true, false, false , false, false, true)
@@ -40,9 +41,6 @@ class ConstructionActivity : AppCompatActivity() {
 
             i++
         }
-
-
-
     }
 }
 
