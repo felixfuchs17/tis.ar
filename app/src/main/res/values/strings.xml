@@ -15,6 +15,5 @@
     <string name="influence_point5">einspurige Verkehrsführung</string>
     <string name="influence_point6">Baustellenampelregelung</string>
     <string name="influence_point7">großräumige Umleitung für Durchgangsverkehr</string>
-
-
+    <string name="influence_point8">Keine Verkehrseinschränkung erwartet</string>
 </resources>
