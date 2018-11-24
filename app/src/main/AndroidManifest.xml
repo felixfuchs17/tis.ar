@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <uses-feature android:name="android.hardware.camera.ar"/>
 
     <application
@@ -16,6 +17,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -27,12 +29,16 @@
                     android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name=".ConstructionActivity"
-            android:parentActivityName=".MainActivity">
+                android:name=".ConstructionActivity"
+                android:parentActivityName=".MainActivity">
         </activity>
+
         <meta-data
                 android:name="com.google.ar.core"
                 android:value="required"/>
+
+        <activity android:name=".ChatActivity">
+        </activity>
         <activity
                 android:name=".TimeLineActivity"
                 android:parentActivityName=".LoginActivity">

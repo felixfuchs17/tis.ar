@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import ar.tis.tisar.R.drawable.oval_button
+import ar.tis.tisar.R.id.floatingActionButton
 import ar.tis.tisar.helper.ARLocationPermissionHelper
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.fragment_ar)
         ARLocationPermissionHelper.requestPermission(this)
 
         arFragment = ux_fragment as ArFragment
@@ -59,6 +61,11 @@ class MainActivity : AppCompatActivity() {
 
         floatingButtonRight.setOnClickListener{
             val intent = Intent(this@MainActivity, ConstructionActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+       chatbutton.setOnClickListener{
+            val intent = Intent(this@MainActivity, ChatActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
