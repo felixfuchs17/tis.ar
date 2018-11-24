@@ -1,38 +1,34 @@
 package ar.tis.tisar
 
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_login.view.*
+import kotlinx.android.synthetic.main.item_message.view.*
+import java.net.URI
 
-class ChatAdapter(private val myDataset: ArrayList<String>) :
-    RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder.
-    // Each data item is just a string in this case that is shown in a TextView.
-    class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
-
-
-    // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): ChatAdapter.MyViewHolder {
-        // create a new view
-        val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_message, parent, false) as TextView
-        // set the view's size, margins, paddings and layout parameters
-
-        return MyViewHolder(textView)
+class ChatAdapter(private val timeList: ArrayList<String>): RecyclerView.Adapter<ChatAdapter.TimeLineHolder>() {
+    override fun getItemCount(): Int {
+        return timeList.size
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.textView.text = myDataset[position]
+    override fun onBindViewHolder(holder: TimeLineHolder, position: Int) {
+        val times = timeList[position]
+        holder.bindTimes(times)
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = myDataset.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimeLineHolder {
+        val inflatedView = parent.inflate(R.layout.item_message)
+        return TimeLineHolder(inflatedView)
+    }
+
+    class TimeLineHolder(v: View): RecyclerView.ViewHolder(v) {
+        private var view: View = v
+
+        fun bindTimes(mileStone: String){
+            view.tv_message_type.text = mileStone
+        }
+    }
+
 }
