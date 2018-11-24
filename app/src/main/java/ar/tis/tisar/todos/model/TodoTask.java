@@ -67,6 +67,14 @@ public class TodoTask extends BaseTodo implements Parcelable {
         RED
     }
 
+    public TodoTask(String name, String listName, Priority prio, int pos, boolean done){
+        this.name = name;
+        this.listName = listName;
+        this.priority = prio;
+        this.listPosition = pos;
+        this.done = done;
+    }
+
     private boolean inTrash;
     private boolean done;
     private int progress;

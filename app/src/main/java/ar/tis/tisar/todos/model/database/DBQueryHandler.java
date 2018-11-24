@@ -158,18 +158,7 @@ public class DBQueryHandler {
 
     public static void deleteTodoList(SQLiteDatabase db, TodoList todoList) {
 
-        long id = todoList.getId();
 
-        int deletedTasks = 0;
-        for(TodoTask task : todoList.getTasks())
-            deletedTasks+=putTaskInTrash(db, task);
-        Log.i(TAG, deletedTasks + " tasks put into trash");
-
-        String where = TTodoList.COLUMN_ID + "=?";
-        String whereArgs[] = {String.valueOf(id)};
-        int deletedLists = db.delete(TTodoList.TABLE_NAME, where, whereArgs);
-
-        Log.i(TAG, deletedLists + " lists removed from database");
     }
 
     public static int deleteTodoTask(SQLiteDatabase db, TodoTask todoTask) {

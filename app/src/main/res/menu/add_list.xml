@@ -4,6 +4,7 @@
 
     <item
         android:id="@+id/ac_add"
+        android:icon="@mipmap/plus_white"
         android:title="List"
         android:text="Neu"
         app:showAsAction="always|withText"/>

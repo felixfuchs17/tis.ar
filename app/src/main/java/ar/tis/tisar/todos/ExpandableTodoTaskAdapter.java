@@ -26,10 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import ar.tis.tisar.R;
-import ar.tis.tisar.todos.model.Helper;
-import ar.tis.tisar.todos.model.TodoSubTask;
-import ar.tis.tisar.todos.model.TodoTask;
-import ar.tis.tisar.todos.model.Tuple;
+import ar.tis.tisar.todos.dialog.ProcessTodoSubTaskDialog;
+import ar.tis.tisar.todos.model.*;
 import ar.tis.tisar.todos.model.database.DBQueryHandler;
 import ar.tis.tisar.todos.model.database.DatabaseHelper;
 
@@ -385,7 +383,7 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
     }
 
     private long getDefaultReminderTime()  {
-        return new Long(5);//new Long(prefs.getString(Settings.DEFAULT_REMINDER_TIME_KEY, String.valueOf(context.getResources().getInteger(R.integer.one_day))));
+        return new Long(prefs.getString(Settings.DEFAULT_REMINDER_TIME_KEY, String.valueOf(context.getResources().getInteger(R.integer.one_day))));
     }
 
     @Override
@@ -400,16 +398,16 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
 
                 GroupPrioViewHolder vh1;
 
-//                if (convertView == null) {
-//                    convertView = LayoutInflater.from(context).inflate(R.layout.exlv_prio_bar, parent, false);
-//                    vh1 = new GroupPrioViewHolder();
-//                    vh1.prioFlag = (TextView) convertView.findViewById(R.id.tv_exlv_priority_bar);
-//                    convertView.setTag(vh1);
-//                } else {
-//                    vh1 = (GroupPrioViewHolder) convertView.getTag();
-//                }
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(context).inflate(R.layout.exlv_prio_bar, parent, false);
+                    vh1 = new GroupPrioViewHolder();
+                    vh1.prioFlag = (TextView) convertView.findViewById(R.id.tv_exlv_priority_bar);
+                    convertView.setTag(vh1);
+                } else {
+                    vh1 = (GroupPrioViewHolder) convertView.getTag();
+                }
 
-//                vh1.prioFlag.setText(getPriorityNameByBarPos(groupPosition));
+                vh1.prioFlag.setText(getPriorityNameByBarPos(groupPosition));
                 convertView.setClickable(true);
 
                 break;
@@ -422,16 +420,16 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
 
                 if (convertView == null) {
 
-//                    convertView = LayoutInflater.from(context).inflate(R.layout.exlv_tasks_group, parent, false);
+                    convertView = LayoutInflater.from(context).inflate(R.layout.exlv_tasks_group, parent, false);
 
                     vh2 = new GroupTaskViewHolder();
-//                    vh2.name = (TextView) convertView.findViewById(R.id.tv_exlv_task_name);
-//                    vh2.done = (CheckBox) convertView.findViewById(R.id.cb_task_done);
-//                    vh2.deadline = (TextView) convertView.findViewById(R.id.tv_exlv_task_deadline);
-//                    vh2.listName = (TextView) convertView.findViewById(R.id.tv_exlv_task_list_name);
-//                    vh2.progressBar = (ProgressBar) convertView.findViewById(R.id.pb_task_progress);
-//                    vh2.seperator = convertView.findViewById(R.id.v_exlv_header_separator);
-//                    vh2.deadlineColorBar = convertView.findViewById(R.id.v_urgency_task);
+                    vh2.name = (TextView) convertView.findViewById(R.id.tv_exlv_task_name);
+                    vh2.done = (CheckBox) convertView.findViewById(R.id.cb_task_done);
+                    vh2.deadline = (TextView) convertView.findViewById(R.id.tv_exlv_task_deadline);
+                    vh2.listName = (TextView) convertView.findViewById(R.id.tv_exlv_task_list_name);
+                    vh2.progressBar = (ProgressBar) convertView.findViewById(R.id.pb_task_progress);
+                    vh2.seperator = convertView.findViewById(R.id.v_exlv_header_separator);
+                    vh2.deadlineColorBar = convertView.findViewById(R.id.v_urgency_task);
                     vh2.done.setTag(currentTask.getId());
                     vh2.done.setChecked(currentTask.getDone());
 
@@ -444,11 +442,11 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
                 vh2.name.setText(currentTask.getName());
                 getProgressDone(currentTask, hasAutoProgress());
                 vh2.progressBar.setProgress(currentTask.getProgress());
-                String deadline = "Deadline";
+                String deadline;
                 if (currentTask.getDeadline() <= 0)
                     deadline = context.getResources().getString(R.string.no_deadline);
-//                else
-//                    deadline = context.getResources().getString(R.string.deadline_dd) + " " + Helper.getDate(currentTask.getDeadline());
+                else
+                    deadline = context.getResources().getString(R.string.deadline_dd) + " " + Helper.getDate(currentTask.getDeadline());
 
                 if(showListName) {
                     vh2.listName.setVisibility(View.VISIBLE);
@@ -464,51 +462,51 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
 
-//                        if(buttonView.isPressed()) {
-//                            Snackbar snackbar = Snackbar.make(buttonView, R.string.snack_check, Snackbar.LENGTH_LONG);
-//                            snackbar.setAction(R.string.snack_undo, new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    if (isChecked){
-//                                        buttonView.setChecked(false);
-//                                        currentTask.setDone(buttonView.isChecked());
-//                                        currentTask.setAllSubTasksDone(false);
-//                                        getProgressDone(currentTask, hasAutoProgress());
-//                                        currentTask.setChanged();
-//                                        notifyDataSetChanged();
-//                                        DBQueryHandler.saveTodoTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), currentTask);
-//                                        for (TodoSubTask st : currentTask.getSubTasks()){
-//                                            st.setDone(false);
-//                                            DBQueryHandler.saveTodoSubTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), st);
-//                                        }
-//                                    } else {
-//                                        buttonView.setChecked(true);
-//                                        currentTask.setDone(buttonView.isChecked());
-//                                        currentTask.setAllSubTasksDone(true);
-//                                        getProgressDone(currentTask, hasAutoProgress());
-//                                        currentTask.setChanged();
-//                                        notifyDataSetChanged();
-//                                        DBQueryHandler.saveTodoTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), currentTask);
-//                                        for (TodoSubTask st : currentTask.getSubTasks()){
-//                                            st.setDone(true);
-//                                            DBQueryHandler.saveTodoSubTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), st);
-//                                        }
-//                                    }
-//
-//                                }
-//                            });
-//                            snackbar.show();
-//                            currentTask.setDone(buttonView.isChecked());
-//                            currentTask.setAllSubTasksDone(buttonView.isChecked());
-//                            getProgressDone(currentTask, hasAutoProgress());
-//                            currentTask.setChanged();
-//                            notifyDataSetChanged();
-//                            DBQueryHandler.saveTodoTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), currentTask);
-//                            for (int i=0; i < currentTask.getSubTasks().size(); i++) {
-//                                currentTask.getSubTasks().get(i).setChanged();
-//                                notifyDataSetChanged();
-//                            }
-//                        }
+                        if(buttonView.isPressed()) {
+                            Snackbar snackbar = Snackbar.make(buttonView, R.string.snack_check, Snackbar.LENGTH_LONG);
+                            snackbar.setAction(R.string.snack_undo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (isChecked){
+                                        buttonView.setChecked(false);
+                                        currentTask.setDone(buttonView.isChecked());
+                                        currentTask.setAllSubTasksDone(false);
+                                        getProgressDone(currentTask, hasAutoProgress());
+                                        currentTask.setChanged();
+                                        notifyDataSetChanged();
+                                        DBQueryHandler.saveTodoTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), currentTask);
+                                        for (TodoSubTask st : currentTask.getSubTasks()){
+                                            st.setDone(false);
+                                            DBQueryHandler.saveTodoSubTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), st);
+                                        }
+                                    } else {
+                                        buttonView.setChecked(true);
+                                        currentTask.setDone(buttonView.isChecked());
+                                        currentTask.setAllSubTasksDone(true);
+                                        getProgressDone(currentTask, hasAutoProgress());
+                                        currentTask.setChanged();
+                                        notifyDataSetChanged();
+                                        DBQueryHandler.saveTodoTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), currentTask);
+                                        for (TodoSubTask st : currentTask.getSubTasks()){
+                                            st.setDone(true);
+                                            DBQueryHandler.saveTodoSubTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), st);
+                                        }
+                                    }
+
+                                }
+                            });
+                            snackbar.show();
+                            currentTask.setDone(buttonView.isChecked());
+                            currentTask.setAllSubTasksDone(buttonView.isChecked());
+                            getProgressDone(currentTask, hasAutoProgress());
+                            currentTask.setChanged();
+                            notifyDataSetChanged();
+                            DBQueryHandler.saveTodoTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), currentTask);
+                            for (int i=0; i < currentTask.getSubTasks().size(); i++) {
+                                currentTask.getSubTasks().get(i).setChanged();
+                                notifyDataSetChanged();
+                            }
+                        }
                     }
                 });
 
@@ -531,9 +529,9 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
 
                 TaskDescriptionViewHolder vh1 = new TaskDescriptionViewHolder();
                 if (convertView == null) {
-//                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.exlv_task_description_row, parent, false);
-//                    vh1.taskDescription = (TextView) convertView.findViewById(R.id.tv_exlv_task_description);
-//                    vh1.deadlineColorBar = convertView.findViewById(R.id.v_task_description_deadline_color_bar);
+                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.exlv_task_description_row, parent, false);
+                    vh1.taskDescription = (TextView) convertView.findViewById(R.id.tv_exlv_task_description);
+                    vh1.deadlineColorBar = convertView.findViewById(R.id.v_task_description_deadline_color_bar);
                     convertView.setTag(vh1);
                 } else {
                     vh1 = (TaskDescriptionViewHolder) convertView.getTag();
@@ -555,10 +553,10 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
             case CH_SETTING_ROW:
                 SettingViewHolder vh2 = new SettingViewHolder();
                 if (convertView == null) {
-//                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.exlv_setting_row, parent, false);
-//                    //vh2.addSubTaskButton = (ImageView) convertView.findViewById(R.id.iv_add_subtask);
-//                    vh2.addSubTaskButton = (RelativeLayout) convertView.findViewById(R.id.rl_add_subtask);
-//                    vh2.deadlineColorBar = convertView.findViewById(R.id.v_setting_deadline_color_bar);
+                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.exlv_setting_row, parent, false);
+                    //vh2.addSubTaskButton = (ImageView) convertView.findViewById(R.id.iv_add_subtask);
+                    vh2.addSubTaskButton = (RelativeLayout) convertView.findViewById(R.id.rl_add_subtask);
+                    vh2.deadlineColorBar = convertView.findViewById(R.id.v_setting_deadline_color_bar);
                     convertView.setTag(vh2);
                     if (currentTask.isInTrash())
                         convertView.setVisibility(View.GONE);
@@ -566,25 +564,25 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
                     vh2 = (SettingViewHolder) convertView.getTag();
                 }
 
-//                vh2.addSubTaskButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                    ProcessTodoSubTaskDialog dialog = new ProcessTodoSubTaskDialog(context);
-//                    dialog.setDialogResult(new TodoCallback() {
-//                        @Override
-//                        public void finish(BaseTodo b) {
-//                            if(b instanceof TodoSubTask) {
-//                                TodoSubTask newSubTask = (TodoSubTask) b;
-//                                currentTask.getSubTasks().add(newSubTask);
-//                                newSubTask.setTaskId(currentTask.getId());
-//                                DBQueryHandler.saveTodoSubTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), newSubTask);
-//                                notifyDataSetChanged();
-//                            }
-//                        }
-//                    });
-//                    dialog.show();
-//                    }
-//                });
+                vh2.addSubTaskButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    ProcessTodoSubTaskDialog dialog = new ProcessTodoSubTaskDialog(context);
+                    dialog.setDialogResult(new TodoCallback() {
+                        @Override
+                        public void finish(BaseTodo b) {
+                            if(b instanceof TodoSubTask) {
+                                TodoSubTask newSubTask = (TodoSubTask) b;
+                                currentTask.getSubTasks().add(newSubTask);
+                                newSubTask.setTaskId(currentTask.getId());
+                                DBQueryHandler.saveTodoSubTaskInDb(DatabaseHelper.getInstance(context).getWritableDatabase(), newSubTask);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    });
+                    dialog.show();
+                    }
+                });
                 vh2.deadlineColorBar.setBackgroundColor(Helper.getDeadlineColor(context, currentTask.getDeadlineColor(getDefaultReminderTime())));
 
                 break;
@@ -592,10 +590,10 @@ public class ExpandableTodoTaskAdapter extends BaseExpandableListAdapter {
                 final TodoSubTask currentSubTask = currentTask.getSubTasks().get(childPosition - 1);
                 SubTaskViewHolder vh3 = new SubTaskViewHolder();
                 if (convertView == null) {
-//                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.exlv_subtask_row, parent, false);
-//                    vh3.subtaskName = (TextView) convertView.findViewById(R.id.tv_subtask_name);
-//                    vh3.deadlineColorBar = convertView.findViewById(R.id.v_subtask_deadline_color_bar);
-//                    vh3.done = (CheckBox) convertView.findViewById(R.id.cb_subtask_done);
+                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.exlv_subtask_row, parent, false);
+                    vh3.subtaskName = (TextView) convertView.findViewById(R.id.tv_subtask_name);
+                    vh3.deadlineColorBar = convertView.findViewById(R.id.v_subtask_deadline_color_bar);
+                    vh3.done = (CheckBox) convertView.findViewById(R.id.cb_subtask_done);
                     convertView.setTag(vh3);
                 } else {
                     vh3 = (SubTaskViewHolder) convertView.getTag();

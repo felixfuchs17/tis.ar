@@ -24,29 +24,33 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:id="@+id/clayout"
-        tools:context=".view.MainActivity">
+        tools:context=".view.TodoActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:theme="@style/AppTheme.AppBarOverlay"
             xmlns:android="http://schemas.android.com/apk/res/android">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary" />
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.AppBarLayout>
 
-
+        <include layout="@layout/content_main" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_new_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end" />
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@mipmap/plus_white" />
 
 
     </android.support.design.widget.CoordinatorLayout>
@@ -68,7 +72,8 @@
                 android:id="@+id/nav_view_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                app:menu="@menu/nav_bottom"/>
 
             <android.support.design.widget.NavigationView
                 android:id="@+id/nav_view"
@@ -76,6 +81,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:fitsSystemWindows="true"
+                android:layout_above="@id/nav_bottom"
+                app:headerLayout="@layout/nav_header"
+                app:menu="@menu/nav_content"
                 app:elevation="0pt"/>
 
         </RelativeLayout>
