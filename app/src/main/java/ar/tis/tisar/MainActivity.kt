@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import ar.tis.tisar.helper.CameraPermissionHelper
+import ar.tis.tisar.todos.TodoActivity
 import com.google.ar.core.ArCoreApk
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.firebase.database.DatabaseReference
@@ -71,4 +72,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun navToTodo(v:View) {
+        val intent = Intent(this@MainActivity, TodoActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+    }
 }

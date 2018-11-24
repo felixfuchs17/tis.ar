@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TIS.AR</string>
+    <string name="deadline_approaching">Todos</string>
+    <string name="unknown_priority">Unknown Priority</string>
+    <string name="no_deadline">No Deadline</string>
+    <string name="open_tasks">Open Tasks</string>
+    <string name="completed_tasks">Completed</string>
+    <string name="group_by_priority">Priorities</string>
+    <string name="sort_by_deadline">Deadline</string>
+    <string name="all_tasks">All</string>
+    <string name="btn_clear">Clear</string>
+    <string name="search">Search</string>
 </resources>
