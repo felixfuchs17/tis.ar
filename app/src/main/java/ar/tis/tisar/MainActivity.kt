@@ -1,10 +1,9 @@
 package ar.tis.tisar
 
+import android.content.Intent
 import android.graphics.Point
 import android.net.Uri
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
@@ -19,15 +18,21 @@ import com.google.ar.core.Plane
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.rendering.ModelRenderable
+import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.fragment_ar.*
-import javax.xml.transform.OutputKeys
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var arFragment: ArFragment
+
+    private var textViewRenderable: ViewRenderable? = null
+    private lateinit var displayTextView: DisplayTextView
+
+    private var textViewRenderableB: ViewRenderable? = null
+    private lateinit var displayTextViewB: DisplayTextView
 
     var x1: Float = 0.0f
     var x2: Float = 0.0f
@@ -44,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         ARLocationPermissionHelper.requestPermission(this)
 
         arFragment = ux_fragment as ArFragment
+
+        initResources()
 
         // Adds a listener to the ARSceneView
         // Called before processing each frame
@@ -72,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set the onclick lister for our button
         // Change this string to point to the .sfb file of your choice :)
-        floatingActionButton.setOnClickListener { addObject(Uri.parse("model.sfb")) }
+        floatingActionButton.setOnClickListener { addObject(Uri.parse("fox.sfb")) }
         showFab(false)
     }
 
@@ -186,17 +193,59 @@ class MainActivity : AppCompatActivity() {
      * Uses the ARCore anchor from the hitTest result and builds the Sceneform nodes.
      * It starts the asynchronous loading of the 3D model using the ModelRenderable builder.
      */
+
+
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
-        ModelRenderable.builder()
-            .setSource(fragment.context, model)
-            .build()
-            .thenAccept {
-                addNodeToScene(fragment, anchor, it)
+        val spacing = 0.419F
+        val anchorNode = AnchorNode(anchor)
+
+        anchorNode.setParent(arFragment.arSceneView.scene)
+
+        // Add the scoreboard view to the plane
+        val renderableView = textViewRenderable ?: return
+        TranslatableNode()
+            .also {
+                it.setParent(anchorNode)
+                it.renderable = renderableView
+                it.addOffset(x = -spacing, y = 1.2F)
+                it.addRot(0f,60.0f,0f)
             }
-            .exceptionally {
-                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
-                return@exceptionally null
+        val renderableView2 = textViewRenderable ?: return
+        TranslatableNode()
+            .also {
+                it.setParent(anchorNode)
+                it.renderable = renderableView2
+                it.addOffset(x = spacing, y = 1.2F)
+                it.addRot(0f,-60.0f,0f)
             }
+        val renderableView3 = textViewRenderable ?: return
+        TranslatableNode()
+            .also {
+                it.setParent(anchorNode)
+                it.renderable = renderableView3
+                it.addOffset(x = 0f, y = 1.2F, z=.726f)
+                it.addRot(0f,0f,0f)
+            }
+
+        ModelRenderable.builder().setSource(fragment.context,model).build().thenAccept{
+            addNodeToScene(fragment,anchor,it)
+        }
+        /*val renderableView1b = textViewRenderableB ?: return
+        TranslatableNode()
+            .also {
+                it.setParent(anchor)
+                it.renderable = renderableView1b
+                it.addOffset(x = -spacing+0.001F, y = .5F)
+                it.addRot(0f,67.5f,0f)
+            }
+        val renderableView2b = textViewRenderableB ?: return
+        TranslatableNode()
+            .also {
+                it.setParent(anchor)
+                it.renderable = renderableView2b
+                it.addOffset(x = spacing-0.001F, y = .5F)
+                it.addRot(0f,-67.5f,0f)
+            }*/
     }
 
     /**
@@ -224,6 +273,35 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
+    }
+
+    private fun initResources() {
+        // Create a droid renderable (asynchronous operation,
+        // result is delivered to `thenAccept` method)
+
+        displayTextView = DisplayTextView(this)
+        displayTextViewB = DisplayTextView(this)
+
+        displayTextView.setText("Erneuerung der Gasleitung")
+        displayTextViewB.setText("                                           ")
+
+        // create a scoreboard renderable (asynchronous operation,
+        // result is delivered to `thenAccept` method)
+        ViewRenderable.builder()
+            .setView(this, displayTextView)
+            .build()
+            .thenAccept {
+                textViewRenderable = it
+            }
+
+        ViewRenderable.builder()
+            .setView(this, displayTextViewB)
+            .build()
+            .thenAccept {
+                textViewRenderableB = it
+            }
+
+
     }
 
 }
