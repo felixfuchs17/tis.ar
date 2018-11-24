@@ -4,6 +4,7 @@ import android.graphics.Point
 import android.net.Uri
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
@@ -19,6 +20,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.fragment_ar.*
+import javax.xml.transform.OutputKeys
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,6 +48,19 @@ class MainActivity : AppCompatActivity() {
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime ->
             arFragment.onUpdate(frameTime)
             onUpdate()
+        }
+
+
+        floatingButtonLeft.setOnClickListener {
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+
+        floatingButtonRight.setOnClickListener{
+            val intent = Intent(this@MainActivity, ConstructionActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
 
         // Set the onclick lister for our button
