@@ -17,10 +17,8 @@ class ConstructionActivity : AppCompatActivity() {
 
     fun changeVisibility() {
         var textData: TextView = findViewById(R.id.V3) as TextView
-        var buttonData: CheckBox = findViewById(R.id.B3) as CheckBox
 
         textData.visibility = View.VISIBLE
-        buttonData.visibility = View.VISIBLE
     }
 }
 

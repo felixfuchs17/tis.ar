@@ -127,67 +127,65 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:columnCount="4"
-                        android:rowCount="4"
+                        android:columnCount="2"
+                        android:rowCount="7"
                         android:orientation="horizontal">
 
-                <CheckBox/>
                 <TextView
                         android:id="@+id/V1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point1"/>
-                <CheckBox/>
+                        android:text="@string/influence_point1"
+                        android:visibility="gone"/>
+
                 <TextView
                         android:id="@+id/V2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point2"/>
-                <CheckBox/>
+                        android:text="@string/influence_point2"
+                        android:visibility="gone"/>
+
                 <TextView
                         android:id="@+id/V3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point3"/>
-                <CheckBox/>
+                        android:text="@string/influence_point3"
+                        android:visibility="gone"/>
+
                 <TextView
                         android:id="@+id/V4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point4"/>
-                <CheckBox/>
+                        android:text="@string/influence_point4"
+                        android:visibility="gone"/>
+
                 <TextView
                         android:id="@+id/V5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point5"/>
-                <CheckBox/>
+                        android:text="@string/influence_point5"
+                        android:visibility="gone"/>
+
                 <TextView
                         android:id="@+id/V6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point6"/>
-            </GridLayout>
+                        android:text="@string/influence_point6"
+                        android:visibility="gone"/>
 
-            <GridLayout android:id="@+id/GridLayoutInfluence2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:columnCount="2"
-                        android:rowCount="1"
-                        android:orientation="horizontal">
-                <CheckBox/>
                 <TextView
                         android:id="@+id/V7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/influence_point7"/>
+                        android:text="@string/influence_point7"
+                        android:visibility="gone"/>
             </GridLayout>
         </LinearLayout>
     </ScrollView>
