@@ -6,4 +6,15 @@
     <string name="construction_project">Baumaßnahmen:</string>
     <string name="construction_contact">Telefon:</string>
     <string name="construction_influence">Verkehrsbeeinflussung</string>
+    <string name="chat_button">Chat</string>
+
+    <string name="influence_point1">Vollsperrrung</string>
+    <string name="influence_point2">eingeschränkte Parkmöglichkeiten</string>
+    <string name="influence_point3">Teilsperrung mit Anlieger frei</string>
+    <string name="influence_point4">Umleitung Geh- und Radverkehr</string>
+    <string name="influence_point5">einspurige Verkehrsführung</string>
+    <string name="influence_point6">Baustellenampelregelung</string>
+    <string name="influence_point7">großräumige Umleitung für Durchgangsverkehr</string>
+
+
 </resources>
