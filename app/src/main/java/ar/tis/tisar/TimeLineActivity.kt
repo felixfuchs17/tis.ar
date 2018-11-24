@@ -19,9 +19,9 @@ class TimeLineActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time_line)
-        val milestone11 = Milestones("17.08.11-22.11.12", "Peter Paul", "Rohrreinigung", "assets/baumann.jpg")
-        val milestone12 = Milestones("02.02.2015-01.07.2017", "Karl Heinz", "Kabel", "assets/baumann1.jpg")
-        val milestone13 = Milestones("01.06.10-31.12.18", "Karl Kurbel", "Asphaltierung", "assets/baumann3.jpg")
+        val milestone11 = Milestones("17.08.11-22.11.12", "Peter Paul", "Rohrreinigung", "res/drawable/baumann.jpg")
+        val milestone12 = Milestones("02.02.2015-01.07.2017", "Karl Heinz", "Kabel", "res/drawable/baumann1.jpg")
+        val milestone13 = Milestones("01.06.10-31.12.18", "Karl Kurbel", "Asphaltierung", "res/drawable/baumann3.jpg")
 
         val timesList: ArrayList<Milestones> = ArrayList()
         timesList.add(milestone11)
