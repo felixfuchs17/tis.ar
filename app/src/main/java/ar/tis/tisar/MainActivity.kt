@@ -38,14 +38,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_ar)
+        setContentView(R.layout.activity_main)
         ARLocationPermissionHelper.requestPermission(this)
 
         arFragment = ux_fragment as ArFragment
 
         // Adds a listener to the ARSceneView
         // Called before processing each frame
-        arFragment.arSceneView.scene.addOnUpdateListener { frameTime ->
+        arFragment.arSceneView.scene.setOnUpdateListener { frameTime ->
             arFragment.onUpdate(frameTime)
             onUpdate()
         }

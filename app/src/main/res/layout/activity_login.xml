@@ -21,6 +21,14 @@
                 android:gravity="center_horizontal|center"
                 android:orientation="vertical">
 
+            <ImageView
+                    android:id="@+id/tvTitleImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="32dp"
+                    android:src="@drawable/logo"/>
+
             <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
@@ -67,8 +75,8 @@
                         android:layout_weight="1"
                         android:hint="Email"
                         android:inputType="textEmailAddress"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white" />
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black" />
 
                 <EditText
                         android:id="@+id/edtPassword"
@@ -77,8 +85,8 @@
                         android:layout_weight="1"
                         android:hint="Password"
                         android:inputType="textPassword"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white" />
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black" />
             </LinearLayout>
 
             <LinearLayout
