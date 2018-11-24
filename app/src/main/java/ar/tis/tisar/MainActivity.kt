@@ -200,7 +200,7 @@ class MainActivity : AppCompatActivity() {
             .also {
                 it.setParent(anchorNode)
                 it.renderable = renderableView
-                it.addOffset(x = -spacing, y = .8F)
+                it.addOffset(x = -spacing, y = 1.2F)
                 it.addRot(0f,60.0f,0f)
             }
         val renderableView2 = textViewRenderable ?: return
@@ -208,7 +208,7 @@ class MainActivity : AppCompatActivity() {
             .also {
                 it.setParent(anchorNode)
                 it.renderable = renderableView2
-                it.addOffset(x = spacing, y = .8F)
+                it.addOffset(x = spacing, y = 1.2F)
                 it.addRot(0f,-60.0f,0f)
             }
         val renderableView3 = textViewRenderable ?: return
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
             .also {
                 it.setParent(anchorNode)
                 it.renderable = renderableView3
-                it.addOffset(x = 0f, y = .8F, z=.726f)
+                it.addOffset(x = 0f, y = 1.2F, z=.726f)
                 it.addRot(0f,0f,0f)
             }
 
