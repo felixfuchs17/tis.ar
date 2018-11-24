@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.CheckBox
+import android.widget.TextView
 
 class ConstructionActivity : AppCompatActivity() {
 
@@ -13,11 +15,12 @@ class ConstructionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_construction_site)
     }
 
-    fun infoToChat(v: View) {
-        Log.e("TAG", "ONCLICK")
-        val intent = Intent(this@ConstructionActivity, ConstructionActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+    fun changeVisibility() {
+        var textData: TextView = findViewById(R.id.V3) as TextView
+        var buttonData: CheckBox = findViewById(R.id.B3) as CheckBox
+
+        textData.visibility = View.VISIBLE
+        buttonData.visibility = View.VISIBLE
     }
 }
 
