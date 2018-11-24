@@ -1,5 +1,6 @@
 package ar.tis.tisar
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -32,6 +33,13 @@ class TimeLineActivity: AppCompatActivity() {
         adapter = TimeLineRecyclerAdapter(timesList)
         recyclerView.adapter = adapter
 
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this@TimeLineActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
     }
 }
 

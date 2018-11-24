@@ -41,10 +41,10 @@
         </activity>
         <activity
                 android:name=".TimeLineActivity"
-                android:parentActivityName=".LoginActivity">
+                android:parentActivityName=".MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".LoginActivity"/>
+                    android:value=".MainActivity"/>
         </activity>
     </application>
 

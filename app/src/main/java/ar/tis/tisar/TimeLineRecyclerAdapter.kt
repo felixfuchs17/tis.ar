@@ -30,7 +30,7 @@ class TimeLineRecyclerAdapter(private val timeList: ArrayList<Milestones>): Recy
             view.textView.text = mileStone.date
             view.arbeiter.text = mileStone.bauarbeiter
             view.activitaet.text = mileStone.activitaet
-            view.photo.setImageURI(Uri.parse(mileStone.imgpath))
+            view.photo.setImageResource(R.drawable.baumann)
         }
     }
 
